@@ -1,0 +1,41 @@
+
+<% if @results.length > 0 %>
+	<style>
+		table{width:100%;text-align:center;}
+
+	</style>
+	<%=form_tag('/multicast/select') do%>
+		<table border="1">
+		<tr>
+		<th>No.</th><th>Select</th> <th>Name</th> <th>Gender</th> <th>DOB</th> <th>Occupation</th><th>Pregnant</th><th>Village</th><th>Mobile</th>
+		</tr>
+		<%@results.each_with_index do |per,i| %>
+		 <tr>
+		 	<td><%=i+1%></td>
+			 <td><%= check_box_tag "persons[]", per.personid , true	%></td>
+			 <td><%= per.fname %> <%= per.mname %> <%= per.lname %></td>
+			 <td>
+			 		<%=if (per.gender == "m") 
+				 	"Male" else "Female" end	%>
+			 </td>
+			 <td><%= per.dob %></td>
+			 <td><%= per.occupation %></td>
+			 <td><%if per.gender == "m"%>
+			 N/A
+			 <%else%>
+			 	<%if per.pregnant_status ==1 %>
+				<b>Yes</b>
+				<%else%>No<%end%>
+			<%end%>
+			 </td>
+			 <td><%= per.village %></td>
+			 <td><%= per.mobnum %></td>
+		 </tr>
+		<%end%>
+		<tr>
+		<td colspan="9"><br><%=submit_tag "Proceed with Selection",:class =>"btn btn-success"%><br><br></td>
+		</tr>
+		</table>
+	<%end%>
+
+<%end%>

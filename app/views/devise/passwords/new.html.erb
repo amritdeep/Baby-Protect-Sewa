@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <title>Baby Protect seva+ | Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster">
+        <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/prettyPhoto/css/prettyPhoto.css">
+        <link rel="stylesheet" href="/assets/css/flexslider.css">
+        <link rel="stylesheet" href="/assets/css/font-awesome.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="/assets/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
+          <style>
+        .datecustom select{
+          width:100px;
+        }
+        .controls{
+          text-align:left;
+        }
+        #error_explanation{
+             padding: 8px 35px 8px 14px;
+              margin-bottom: 20px;
+              text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+              
+              
+              -webkit-border-radius: 4px;
+              -moz-border-radius: 4px;
+              border-radius: 4px;
+             
+              text-align:left;
+
+                background-color: #f2dede;
+                  border-color: #eed3d7;
+                  color: #b94a48;
+        }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- Header -->
+        <div class="container">
+            <div class="header row">
+                <div class="span12">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                            <h1>
+                                <a class="brand" href="/">Baby Protect</a>
+                            </h1>
+                            <div class="nav-collapse collapse">
+                                <ul class="nav pull-right">
+                                    <li >
+                                        <a href="/"><i class="icon-home"></i><br />Home</a>
+                                    </li>
+                                    <li >
+                                        <a href="/features"><i class="icon-star"></i><br />Features</a>
+                                    </li>
+                                     <li>
+                                        <a href="/howtouse"><i class="icon-book"></i><br />How-To-Use</a>
+                                    </li>
+                                    <li>
+                                        <a href="/contactus"><i class="icon-envelope"></i><br />Contact Us</a>
+                                    </li>
+                          
+                                    <li>
+                                        <a href="/users/sign_in"><i class="icon-key"></i><br />Login</a>
+                                    </li>
+                                    <li>
+                                      
+                                        <a href="/users/sign_up"><i class="icon-pencil"></i><br />Signup</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+        <!-- Site Description -->
+        <div class="page-title">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <i class="icon-key page-title-icon"></i>
+                        <h2>Forgot Password |</h2>
+                        <p>Reset your password</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Slider -->
+            <div class="container">
+                <div class="row">
+                    <div class="span10 offset1" style='text-align:left'>             
+                    	
+                    	<br><BR><h4 style="color:#5d5d5d">Enter your registered e-mail here </h4>
+
+						<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+						  <%= devise_error_messages! %>
+
+						  <div><%= f.label :email %>
+						  <%= f.email_field :email, :autofocus => true %></div>
+
+						  <div><%= f.submit "Send me reset password instructions" ,:class=>"btn btn-inverse"%></div>
+						<% end %>
+
+						<%= render "devise/shared/links" %>
+						
+                    </div>
+                </div>
+            </div>
+
+
+        
+        
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="copyright span4">
+                        <p>&copy; Copyright 2013 Baby Protect</a>.</p>
+                    </div>
+                    <div class="social span8">
+                        <a class="facebook" href=""></a>
+                       
+                        <a class="twitter" href=""></a>
+                       
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Javascript -->
+        <script src="/assets/js/jquery-1.8.2.min.js"></script>
+        <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/js/jquery.flexslider.js"></script>
+        <script src="/assets/js/jquery.tweet.js"></script>
+        <script src="/assets/js/jflickrfeed.js"></script>
+        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+        <script src="/assets/js/jquery.ui.map.min.js"></script>
+        <script src="/assets/js/jquery.quicksand.js"></script>
+        <script src="/assets/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+        <script src="/assets/js/scripts.js"></script>
+
+    </body>
+
+</html>
+

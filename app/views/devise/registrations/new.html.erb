@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <title>Baby Protect seva+ | Register</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/prettyPhoto/css/prettyPhoto.css">
+        <link rel="stylesheet" href="/assets/css/flexslider.css">
+        <link rel="stylesheet" href="/assets/css/font-awesome.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="/assets/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
+          <style>
+        .datecustom select{
+          width:100px;
+        }
+        .controls{
+          text-align:left;
+        }
+         #error_explanation{
+             padding: 8px 35px 8px 14px;
+              margin-bottom: 20px;
+              text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+              
+              
+              -webkit-border-radius: 4px;
+              -moz-border-radius: 4px;
+              border-radius: 4px;
+             
+              text-align:left;
+
+                background-color: #f2dede;
+                  border-color: #eed3d7;
+                  color: #b94a48;
+        }
+        
+        </style>
+    </head>
+
+    <body>
+
+        <!-- Header -->
+        <div class="container">
+            <div class="header row">
+                <div class="span12">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                            <h1>
+                                <a class="brand" href="/">Baby Protect seva+</a>
+                            </h1>
+                            <div class="nav-collapse collapse">
+                                <ul class="nav pull-right">
+                                    <li >
+                                        <a href="/"><i class="icon-home"></i><br />Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="/features"><i class="icon-star"></i><br />Features</a>
+                                    </li>
+                                     <li>
+                                        <a href="/howtouse"><i class="icon-book"></i><br />How-To-Use</a>
+                                    </li>
+                                    <li>
+                                        <a href="/contactus"><i class="icon-envelope"></i><br />Contact Us</a>
+                                    </li>
+                          
+                                    <li>
+                                        <a href="/users/sign_in"><i class="icon-key"></i><br />Login</a>
+                                    </li>
+                                    <li class="current-page">
+                                        <a href="/users/sign_up"><i class="icon-pencil"></i><br />Signup</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+        <!-- Site Description -->
+        <div class="page-title">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <i class="icon-pencil page-title-icon"></i>
+                        <h2>Register |</h2>
+                        <p>NGO Operator signup here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Slider -->
+            <div class="container">
+                <div class="row">
+                    <div class="span10 offset1">
+                       <br><br>
+                       <div id='custom_error_div' class="alert alert-danger" style="text-align:left"></div>
+                          
+
+<fieldset>
+
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name) ,:html => {:class => "form-horizontal",:name=>"hello"}) do |f| %>
+  <%= devise_error_messages! %>
+
+   <div class="control-group"><%= f.label "Your Name",:class => "control-label" %>
+    <div class="controls"><%= f.text_field :name, :autofocus => true ,:onchange=>"Name()"%><span id='name_error'></span>
+    </div></div>
+
+  <div class="control-group"><%= f.label :username ,:class => "control-label"%>
+   <div class="controls"><%= f.text_field :username ,:onchange=>"Username()"%><span id='username_error'></span>
+   </div></div>
+
+  <div class="control-group"><%= f.label "Create a Password",:class => "control-label" %>
+  <div class="controls"> <%= f.password_field :password ,:onchange=>"Password()"%><br>
+   </div></div>
+
+  <div class="control-group"><%= f.label "Confirm your Password",:class => "control-label"%>
+   <div class="controls"><%= f.password_field :password_confirmation ,:onchange=>"PasswordConfirmation()"%><span id='password_confirmation_error'></span>
+   </div></div>
+ 
+  
+  <div class="control-group"><%= f.label :email,:class => "control-label" %>
+   <div class="controls"><%= f.email_field :email,:onchange=>"Email()"%>
+   </div></div>
+  
+  <div class="control-group"><%= f.label :gender ,:class => "control-label"%>
+   <div class="controls"><%= f.select(:gender, [['Male', "m"], ['Female', "f"]]) %></div></div>
+   
+   <div class="control-group"><%= f.label :area_of_your_office ,:class => "control-label"%>
+  <div class="controls"> <%= f.text_field :area,:onchange => "Area()"%></div></div>
+
+  <div class="control-group"><%= f.label :state,:class => "control-label" %>
+   <div class="controls"><%= f.select(:state, indian_states )%></div></div>
+
+  <%ngos = Ngo.all.to_a
+  ngo_ops =  Array.new
+  %>
+  <%ngos.each do |x|%>
+  <%ngo_ops << [x.name,x.name] %>
+  <%end%>
+
+  <div class="control-group"> <label class ="control-label">Select Your NGO</label>
+   <div class="controls"><%= f.select(:ngo, ngo_ops) %></div></div>
+ 
+  
+  <div class="control-group"><%= f.label "Mobile Number " ,:class => "control-label"%>
+   <div class="controls"><big>+91 </big><%= f.text_field :mobnum ,:onchange=>"mobNum()",:style=>"width:180px"%><span id='mobnum_error'></span></div></div>
+  
+ 
+  <div class="control-group"> <div class="controls"><%= f.submit "Sign up" ,:class=>"btn btn-primary" %><bR><br><%= render "devise/shared/links" %></div></div>
+<% end %>
+
+
+</div>
+
+</fieldset>
+
+                    </div>
+                </div>
+            </div>
+
+
+        
+        
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="copyright span4">
+                        <p>&copy; Copyright 2013 Baby Protect Seva+</p>
+                    </div>
+                    <div class="social span8">
+                        <a class="facebook" href=""></a>
+                       
+                        <a class="twitter" href=""></a>
+                       
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Javascript -->
+        <script src="/assets/js/jquery-1.8.2.min.js"></script>
+        <script src="/assets/bootstrap/js/bootstrap.js"></script>
+        <script>
+        $(function(){
+          
+          $('#new_user').bind('submit',formValidation);
+          $('#custom_error_div').hide();
+
+        });
+        </script>
+        <script>
+
+      flag1=1;flag2=1;flag3=1;flag5=1;flag6=1;flag7=1;flag8=1;flag9=1;flag10=1;
+      function Name()
+      {
+
+          var name = document.forms["hello"]["user[name]"].value;
+          var reg = /^[a-zA-Z]+$/;
+         // var bool = (name.value != "")
+          var bool = reg.test(name);
+          if(bool==false){
+                //$('#username_error').html('Invalid Username | Username must be alpha-numeric');
+                flag1=1;  
+                return false;
+            }
+          else{
+              
+                 flag1=0;  
+              
+            }
+      }
+      
+      
+      function Username()
+      {var userid = document.forms["hello"]["user[username]"].value;
+      var reg_userid =/^[a-zA-Z0-9]+$/;
+      var bool = reg_userid.test(userid);
+      if(bool==false){
+       //$('#username_error').html('Invalid Username | Username must be alpha-numeric');
+      return false;}
+      else{
+         //$('#username_error').html('');
+      flag2=0;
+      }
+      }
+      function Password()
+      {
+      var pass = document.forms["hello"]["user[password]"].value
+      var reg_pass =/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})/g;
+      var bool = reg_pass.test(pass);
+      if(bool==false)
+      { 
+      return false;}
+      else
+      flag3=0;
+      }
+
+      function Email()
+      {
+      var email = document.forms["hello"]["user[email]"].value;
+      var reg_email =/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+      var bool = reg_email.test(email);
+      if(bool==false){
+      
+      return false;}
+      else
+      flag5=0;
+      }
+      function Area(){
+        var area = document.forms["hello"]["user[area]"].value;
+        var bool = (area.value != "")
+        if(bool==false){
+        
+        return false;}
+        else
+        flag6=0;
+      }
+      function mobNum()
+      {
+        var mob = document.forms["hello"]["user[mobnum]"].value;
+        var reg_mob =/^\d{10}$/;
+        var bool = reg_mob.test(mob);
+        if(bool==false){
+        //alert("Mobile Number must contain 10 digits"); 
+        return false;}
+        else{
+        flag10=0;
+        }
+      }
+
+      function formValidation()
+      {
+          $('#custom_error_div').html('');
+           if(flag1==1)
+          {
+            $('#custom_error_div').append('<li>Please enter your name.<br>');
+            
+          }
+          if(flag2==1)
+          {
+            $('#custom_error_div').append('<li>Invalid Username | Username must be alpha-numeric<br>');
+            
+          }
+          if (flag3==1)
+          {
+             $('#custom_error_div').append('<li>Invalid Password | Password Must contain A-Z,a-z,0-9,and a special character.Must be between 6 to 20.');
+            
+          }
+          if (flag5==1)
+          {
+
+             $('#custom_error_div').append('<li>Please enter a valid e-mail address');
+            }
+            if (flag6==1)
+          {
+
+             $('#custom_error_div').append('<li>Please enter your office area');
+            }
+
+          if (flag10==1)
+          {
+             $('#custom_error_div').append('<li>Mobile number must contain 10 digits');
+  
+          }
+          
+          var pass = document.forms["hello"]["user[password]"].value
+          var confir = document.forms["hello"]["user[password_confirmation]"].value
+          
+          if (confir != pass)
+          {
+            $('#custom_error_div').append('<li>Password doesn\'t match password confirmation.');
+             
+            flag4==1;
+          }
+            else {
+            flag4=0 ;
+          }
+
+          if (flag2==0 && flag3==0 && flag4==0 && flag5==0 && flag6==0 && flag10==0){
+            return true;
+
+          }
+          else{
+            $('#custom_error_div').show('50');
+             $('html, body').animate({scrollTop: '0px'}, 300)
+            return false;
+          }
+
+
+      }
+
+
+
+</script>
+
+    </body>
+
+</html>
+
+
+
+
+
+
+
+

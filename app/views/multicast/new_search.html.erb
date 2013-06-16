@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <title>Baby Protect seva+ | Multicast</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster">
+        <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/prettyPhoto/css/prettyPhoto.css">
+        <link rel="stylesheet" href="/assets/css/flexslider.css">
+        <link rel="stylesheet" href="/assets/css/font-awesome.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="assets/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
+        <style>
+        #resultsdiv{
+            padding:10px;
+        }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- Header -->
+        <div class="container">
+            <div class="header row">
+                <div class="span12">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                            <h1>
+                                <a class="brand" href="/">Baby Protect</a>
+                            </h1>
+                            <div class="nav-collapse collapse">
+                                <ul class="nav pull-right">
+                                    <li>
+                                        <a href="/"><i class="icon-dashboard icon-large"></i><br />Dashboard<br>&nbsp;</a>
+                                    </li>
+                                    <li >
+                                        <a href="/managedb"><i class="icon-tasks icon-large"></i><br />Manage<br> Database</a>
+                                    </li>
+                                    
+                                    <li class="current-page">
+                                        <a href="/multicast"><i class="icon-group	  icon-large"></i><br />Multicast<br>&nbsp;</a>
+                                    </li>
+                                    <li>
+                                        <a href="/unicast"><i class="icon-star  icon-large"></i><br />Unicast<br>&nbsp;</a>
+                                    </li>
+                                     
+                                    
+                          
+                                    <li>
+                                        <a href="/users/edit"><i class="icon-user  icon-large"></i><br />Profile<br>&nbsp;</a>
+                                    </li>
+                                    <li>
+                                        <a href="/users/sign_out"><i class="icon-pencil  icon-large"></i><br />LOGOUT<br>&nbsp;</a>
+                                   </li>
+                              		
+                                </ul>
+                                
+                               
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       <div class="page-title">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <i class="icon-user page-title-icon"></i>
+                        <h2>Multicast |</h2>
+                        <p>Create a new Mulicast</p>
+                        <p class="pull-right" style="padding-right:30px">
+                                 <br>Logged in as : <%= current_user.name %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+   
+       <!-- End -->
+
+           <div class="what-we-do container">
+            <div class="row">
+                
+                <div class="span3 service" style="text-align:left">
+               	<div style="padding:20px">
+
+               	<form method="post" class="form-vertical" id ="searchform">
+        		<fieldset>
+        		<legend>Search</legend>
+        			
+        			<input type="hidden" name="dosearch" value="1">
+        				<div class="control-group">
+        				<label class="control-label"><input type="checkbox" name ="onoff[gender]"> Gender :</label>
+        				<div class="controls">
+        					<select name="search[gender]">
+        						<option value="m">Male</option>
+        						<option value="f">Female</option>
+        					</select>
+        				</div>
+        				</div>
+
+        				<div class="control-group">
+        				<label class="control-label"><input type="checkbox" name ="onoff[age]"> Age  between :</label>
+        				<div class="controls">
+        					<input type="text" class="input-mini search-query"  name="search[age_l]"> and  <input type="text" name="search[age_h]"  class="input-mini search-query">
+        				</div>
+        				</div>
+        			
+        				<div class="control-group">
+        				<label class="control-label"><input type="checkbox" name ="onoff[village]"> Village:</label>
+        				<div class="controls">
+        					<input type="text" class="input-medium search-query" name="search[village]">
+        				</div>
+        				</div>
+
+        				<div class="control-group">
+        				<label class="control-label"><input type="checkbox" name ="onoff[occupation]"> Occupation:</label>
+        				<div class="controls">
+        					<input type="text" class="input-medium search-query" name="search[occupation]">
+        				</div>
+        				</div>
+        				<div class="control-group">
+        				<label class="control-label"><input type="checkbox" name ="onoff[pregnant_status]"> Pregnant: </label>
+        				<div class="controls">
+        					<select name="search[pregnant_status]">
+        						<option value="1">Yes</option>
+        						<option value="0">No</option>
+        					</select><br><br>
+        					<input type="submit" class="btn btn-success" value ="Search">&nbsp;&nbsp;&nbsp;&nbsp;
+                            <%= link_to "Back" , "/" ,:class=>"btn btn-inverse"%>
+        				</div>
+        				</div>
+        				
+        				<br>
+        		</fieldset>
+        		</form>
+
+                </div>
+               </div>
+
+               <div class="span8 service">
+               	<legend>Results</legend>
+        		<div id="resultsdiv">
+                    <div style="font-size:16px">
+                    
+                     <h3>Instructions</h3>
+                    1. Set the search criteria in the left panel<br><bR>
+                    2. Tick the criterias you want to search with<br><br>
+                    3. Click "SEARCH"<br><br>
+                    4. Results will appear in this panel<br><br>
+                    </div>
+        		</div>
+               </div>
+                
+            </div>
+        </div>
+
+
+    </div>
+    <br>
+
+
+       <!-- Services -->
+        
+       
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="copyright span4">
+                        <p>&copy; Copyright 2013 Baby Protect</a>.</p>
+                    </div>
+                    <div class="social span8">
+                        <a class="facebook" href=""></a>
+                       
+                        <a class="twitter" href=""></a>
+                       
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Javascript -->
+        <script src="/assets/js/jquery-1.8.2.min.js"></script>
+        <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+       
+        <script type="text/javascript">
+
+		$(document).ready(function() {
+		$('#searchform').submit(function () {
+			
+			 $('#resultsdiv').html("Loading ... ");
+		    $.post('/multicast/getResults', $('#searchform').serialize(), function (data, textStatus) {
+		         $('#resultsdiv').html(data);
+		    });
+		    return false;
+		});
+		});
+		</script>
+
+
+    </body>
+
+</html>

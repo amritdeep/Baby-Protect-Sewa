@@ -1,0 +1,11 @@
+<%@calls.each do |call|%>
+	<div style="background:#5d5d5d;color:white;padding:15px;display:inline-block;border-radius:10px;text-align:left">
+		Person : <span style="color:yellow"><%=call.pname%></span> <br>
+		Status :<br>
+		<%call.messages.each_with_index do |mess,i|%>
+			<%=i+1%>. <%=mess%><br>
+		<%end%>
+	</div>
+	
+
+<%end%>

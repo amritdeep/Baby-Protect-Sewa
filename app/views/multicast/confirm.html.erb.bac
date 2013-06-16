@@ -1,0 +1,38 @@
+<%if @done %>
+Multicast deployed<br><br>
+<%= link_to "View Muticast progress" , :action => :last_multicast %><br><br>
+<%= link_to "Home" , "/" %>
+<%else %>
+<form method="post">
+
+<%= hidden_field_tag "multicast[id]", @multicast.id%>
+
+<b><%=@multicast.sms_voice.capitalize%> Multicast </b>
+<br>Send to  <%=pluralize(@multicast.people_ids.count, 'person')%>  
+
+<br><br><b>Scheduled For :</b><br>
+<% if @multicast.when =="lat"%>
+<%=@multicast.datetime%>
+<%else%>
+Immediate 
+<%end%>
+
+<%if @multicast.sms_voice =="sms"%>
+	<div style="width:200px">
+	<br><b>SMS TEXT </b><br>
+	<%= @multicast.message%>
+	<br>
+	</div>
+
+<%else%>
+	<div style="width:200px">
+	<br><b>Audio File Name :</b><br>
+	<%= @multicast.audio_file_name%>
+	<br>
+	</div>
+<%end%>
+
+<br>
+<input type="submit" value="Confirm">
+</form>
+<%end%>

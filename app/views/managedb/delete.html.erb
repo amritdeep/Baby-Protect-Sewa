@@ -1,0 +1,92 @@
+  <div class="page-title">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <i class="icon-user page-title-icon"></i>
+                        <h2>Remove Family/</h2>
+                        <p>Remove One or More Family members</p>
+                        <p class="pull-right" style="padding-right:30px">
+                                 <br>Logged in as : <%= current_user.name %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<h4 align="left" style="padding-left:65px">Delete Family Form</h4>
+      <div class="what-we-do container">
+            <div class="row">
+              <div class="span12">
+                <div class="service span5" align="left">
+					<div style="padding:20px">
+						<form method="post">	
+						<fieldset><br>
+						<input type="hidden" name="dosearch1" value="1">
+						<input type="checkbox" name ="onoff1[famid]"><b><big>  Family ID : </big></b><input type="text" name="search[famid]"><br>
+						<input type="checkbox" name ="onoff1[fname]"><b><big>  Member name: </big></b><input type="text" name="search[fname]"><br>
+						<input type="checkbox" name ="onoff1[lname]"><b><big>  Last name: </big></b><input type="text" name="search[lname]"><br>
+						<input type="checkbox" name ="onoff1[mobnum]"><b><big>  Member mobile number: +91</big></b><input type="text" name="search[mobnum]" style="width:150px"><br>
+						<br>
+						<input type="submit" value ="Search" class="btn btn-success">
+						<input type="button" value = "Back" onclick="javascript:window.location.href='/managedb'" class="btn btn-inverse">
+						</fieldset>
+						</form>
+					</div>
+				</div>
+				<div class="service span5 offset1" align="left" style="padding-left:10px">
+					<h4 align="left" style="padding:10px">How it Works ??</h4>
+					<h5 align="left">Please follow below steps: </h5>
+					<ul style="font-size:15px;padding-right:10px">
+						<li> On the Left screen, enter the details that you want to search and check the checkbox to enable the parameter.</li>
+						<li>Click "Search"</li>
+						<li>Now results will be shown below. Find the family that you are looking for.</li>
+						<li>Click "Delete Family"</li>
+						<li>You will be shown a confirmation for deletion.</li>
+						<li>Press 'confirm' to delete the family.</li>
+						
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		</div>
+		</div>
+
+	<br>
+
+
+	<% if @r1 %><div class="what-we-do container">
+        <div class="row">
+            <div class="span12">
+	<table border=1 >
+	<table border=1 class="table table-bordered" style="width:97%" align="center">
+	      <tr class="success">
+	        <td ><b><big>Family Id</b></big></td>
+	        <td><b><big>First Name</b></big></td>
+	        <td><b><big>Middle Name</b></big></td>
+	        <td><b><big>Last Name</b></big></td>
+	        <td><b><big>Mobile Number</b></big></td>
+	        <td><b><big>Adult/Child</b></big></td>
+	        <td><b><big>Gender</b></big></td>
+	        <td><b><big>DOB</b></big></td>
+	        <td><b><big>Occupation</b></big></td>
+	        <td><b><big>Village</b></big></td>
+	        <td><b><big>Edit</b></big></td>
+	      </tr>
+	<% @r1.each do |x| %>
+	<tr class="warning">
+		<td><%= x.family.famid %></td>
+		<td><%=	x.fname %></td>
+		<td><%=	x.mname %></td>
+		<td><%=	x.lname %></td>
+		<td><%=	x.mobnum %></td>
+		<td><%if x.adult == 1 %>Adult<%else%>Child<%end%></td>
+		<td><%if x.gender == 'm' %>Male<%else%>Female<%end%></td>
+		<td><%=	x.dob %></td>
+		<td><%=	x.occupation %></td>
+		<td><%=	x.village %></td>
+		<td><%= link_to "Delete" , "/managedb/delete_conf?famid="+ x.family_id ,:class=>"btn btn-small btn-warning"%>
+		<% end %>
+	</tr>
+</table>	</div></div></div>
+	<%end%>

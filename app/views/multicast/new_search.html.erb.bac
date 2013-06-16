@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+	 <script src="/includes/jquery.js"></script>
+    <SCRIPT LANGUAGE="JavaScript" SRC="/bootstrap/js/bootstrap.js"></SCRIPT>
+    <style>
+    	.form-horizontal .control-group{
+    		margin-bottom:5px;
+    	}
+
+    	#results-div{
+    		height:800px;
+    		background:#9c9;
+    		overflow: auto;
+    	}
+    </style>
+    <script type="text/javascript">
+	$(document).ready(function() {
+	$('#searchform').submit(function () {
+		 $('#resultsdiv').html("Loading ... ");
+	    $.post('/multicast/getResults', $('#searchform').serialize(), function (data, textStatus) {
+	         $('#resultsdiv').html(data);
+	    });
+	    return false;
+	});
+	});
+	</script>
+</head>
+<body>
+<div class="container">
+<div class="row">
+	<div class="span3">
+		
+		<form method="post" class="form-vertical" id ="searchform">
+		<fieldset>
+		<legend>Search</legend>
+			
+			<input type="hidden" name="dosearch" value="1">
+				<div class="control-group">
+				<label class="control-label"><input type="checkbox" name ="onoff[gender]"> Gender :</label>
+				<div class="controls">
+					<select name="search[gender]">
+						<option value="m">Male</option>
+						<option value="f">Female</option>
+					</select>
+				</div>
+				</div>
+
+				<div class="control-group">
+				<label class="control-label"><input type="checkbox" name ="onoff[age]"> Age  between :</label>
+				<div class="controls">
+					<input type="text" class="input-mini search-query"  name="search[age_l]"> and  <input type="text" name="search[age_h]"  class="input-mini search-query">
+				</div>
+				</div>
+			
+				<div class="control-group">
+				<label class="control-label"><input type="checkbox" name ="onoff[village]"> Village:</label>
+				<div class="controls">
+					<input type="text" class="input-medium search-query" name="search[village]">
+				</div>
+				</div>
+
+				<div class="control-group">
+				<label class="control-label"><input type="checkbox" name ="onoff[occupation]"> Occupation:</label>
+				<div class="controls">
+					<input type="text" class="input-medium search-query" name="search[occupation]">
+				</div>
+				</div>
+				<div class="control-group">
+				<label class="control-label"><input type="checkbox" name ="onoff[pregnant_status]"> Pregnant: </label>
+				<div class="controls">
+					<select name="search[pregnant_status]">
+						<option value="1">Yes</option>
+						<option value="0">No</option>
+					</select><br><br>
+					<input type="submit" class="btn btn-primary" value ="Search">
+				</div>
+				</div>
+				
+				<br>
+
+				<%= link_to "Back" , "/" %>
+
+
+		</fieldset>
+		</form>
+	</div>
+
+
+	<div class="span9" >
+		<legend>Results</legend>
+		<div id="resultsdiv" >
+			
+		</div>
+		
+	</div>
+</div> <!-- /row -->
+</div> <!-- /contianer -->
+</body>
+</html>

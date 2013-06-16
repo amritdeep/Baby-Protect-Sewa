@@ -1,0 +1,98 @@
+<html>
+<head>
+	 <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+	 <script src="/includes/jquery.js"></script>
+     <SCRIPT LANGUAGE="JavaScript" SRC="/bootstrap/js/bootstrap.js"></SCRIPT>
+     <script>
+     	$(document).ready(function() 
+		{	
+			if($("#multicast_sms_voice_voice").attr('checked'))
+			{
+				$("#smsdiv").hide();
+				$("#voicediv").show();
+			}
+			else
+			{
+				$("#smsdiv").show();
+				$("#voicediv").hide();
+			}
+			
+			$("#multicast_sms_voice_voice").click(function() 
+			    {
+			            $("#smsdiv").hide("slow");
+			            $("#voicediv").show("slow");
+			        
+			    });
+			$("#multicast_sms_voice_sms").click(function() 
+			    {
+			            $("#voicediv").hide("slow");
+			            $("#smsdiv").show("slow");
+			        
+			    });
+		});
+     </script>
+     <style>
+     .extra select{
+     	width:70px;
+     }
+     </style>
+</head>
+
+<body>
+<div class="container">
+<div class="row">
+<div class="span12">
+<%if @error_messages %>
+	<div class="alert"><b>Errors :</b><br>
+	<%@error_messages.each do |key,val|%>
+		 <%=val%>
+	<%end%>
+	</div>
+<%end%>
+<br>
+Your selection has been saved.
+<br><br>
+<%=@multicast.people_ids.count%> person selected
+<br>
+<%= form_for( @multicast,:as=>"multicast", :url => "/multicast/upload", :method=>:post,:html => { :multipart => true} ) do |f| %>
+
+	<legend>Select Multicast type : </legend>
+	<%= f.hidden_field :id %>
+	<%= f.radio_button :sms_voice, 'voice'%> Voice
+    <%= f.radio_button :sms_voice, 'sms' %> SMS
+<br>
+</div>
+</div>
+<div class="row">
+	<div class="span5">
+		<div id="voicediv">
+		<legend>Upload Audio file</legend>
+		  	<%= f.file_field :audio%>
+		</div>
+		<div id="smsdiv">
+		<legend>Type SMS here</legend>
+		<%= f.text_area :message ,:size => "30x10"%>
+		</div>
+	</div>
+
+	<div class="span7">
+		<legend>Schedule multicast here</legend>
+		When do you want to send the multicast :<br><br>
+		<div class="form-inline extra">
+		<%= f.radio_button :when, 'im'%> Immediate<br><br>
+    	<%= f.radio_button :when, 'lat' %> Schedule Time <%= f.datetime_select(:datetime,:order=>[:day,:month,:year],:minute_step => 5)%>
+    	</div>
+	</div>
+
+</div> <!-- /row -->
+<div class="row">
+	<div class="span12"><HR>	
+	<%= f.submit "Next" ,:class=>"btn" %>
+	<% end %>
+	</div>
+
+
+</div> <!-- /row -->
+</div> <!-- /container -->
+</body>
+</html>

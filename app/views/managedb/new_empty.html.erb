@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ 
+  
+  <meta charset="utf-8">
+        <title>Baby Protect seva+ | Manage</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster">
+        <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/prettyPhoto/css/prettyPhoto.css">
+        <link rel="stylesheet" href="/assets/css/flexslider.css">
+        <link rel="stylesheet" href="/assets/css/font-awesome.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="/assets/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
+
+       
+</head>
+
+<body>
+<div class="container">
+            <div class="header row">
+                <div class="span12">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                            <h1>
+                                <a class="brand" href="/">Baby Protect</a>
+                            </h1>
+                            <div class="nav-collapse collapse">
+                                <ul class="nav pull-right">
+                                    <li>
+                                        <a href="/"><i class="icon-dashboard icon-large"></i><br />Dashboard<br>&nbsp;</a>
+                                    </li>
+                                    <li class="current-page">
+                                        <a href="/managedb"><i class="icon-tasks icon-large"></i><br />Manage<br> Database</a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="/multicast"><i class="icon-group   icon-large"></i><br />Multicast<br>&nbsp;</a>
+                                    </li>
+                                    <li>
+                                        <a href="/unicast"><i class="icon-star  icon-large"></i><br />Unicast<br>&nbsp;</a>
+                                    </li>
+                                     
+                                    
+                          
+                                    <li>
+                                        <a href="/users/edit"><i class="icon-user  icon-large"></i><br />Profile<br>&nbsp;</a>
+                                    </li>
+                                    <li>
+                                        <a href="/users/sign_out"><i class="icon-pencil  icon-large"></i><br />LOGOUT<br>&nbsp;</a>
+                                   </li>
+                                  
+                                </ul>
+                                
+                               
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style type="text/css">
+          .per_ex{
+            border-bottom: 1px solid #9d426b;
+          }
+        </style>
+        <div class="page-title">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <i class="icon-user page-title-icon"></i>
+                        <h2>New Family/</h2>
+                        <p>Add Family member details</p>
+                        <p class="pull-right" style="padding-right:30px">
+                                 <br>Logged in as : <%= current_user.name %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4 align="left" style="padding-left:60px">New Family Form</h4>
+         <form accept-charset="UTF-8" action="/managedb/create" class="new_family" id="new_family" method="post">
+                     
+        <div class="what-we-do container">
+            <div class="row">
+              <div class="span12">
+                <div class="service" align="left">
+                      <br>
+                      <div class="alert alert-warning"  style="margin:10px;font-size:14px">
+
+                        <li> You have not yet registered any Asha Workers
+                        <li> First register an Asha Worker then you can create records for families
+                        <br>
+                      </div>
+                      <div style="margin:10px">
+                      <br> <a href="/ashaworker">Register Asha Worker </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href ='/managedb'>Go Back</a><br>
+                      </div>
+                </div>
+              </div>            
+            </div>
+        </div>
+
+            <br>
+            
+
+
+
+<!-- Change to #btn_add below to enable dynamism -->
+
+ <!-- Header -->
+  <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="copyright span4">
+                        <p>&copy; Copyright 2013 Baby Protect</a>.</p>
+                    </div>
+                    <div class="social span8">
+                        <a class="facebook" href=""></a>
+                       
+                        <a class="twitter" href=""></a>
+                       
+                    </div>
+                </div>
+            </div>
+        </footer>
+  <!-- Javascript -->
+        <script src="/assets/js/jquery-1.8.2.min.js"></script>
+        <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+        
+
+        <script>
+// Function to be called on clicking remove 
+  function removeclickeddiv(){
+    $(this).parent().remove();
+  }
+
+// function doBeforeSubmit(form)
+// {
+
+//     alert('submiting')
+//         $.post('/managedb/create', $('#new_family').serialize(), function (data, textStatus) {
+//              alert('result');
+//         });
+//         return false;
+// }
+  
+  function genderchange(){
+    var val = $(this).val();
+    
+    adult_child = $(this).parent().find(".adult_child")
+    if (val == "f" && adult_child.val() == 1)
+    {
+      $(this).parent().find('.iffemale_div').show();  
+    }
+    else
+    {
+      $(this).parent().find('.iffemale_div').hide();
+    }
+
+  }
+
+  function pregchange(){
+    var val = $(this).val();
+    if (val == "1")
+    {
+      $(this).parent().find('.dt_select').show(); 
+    }
+    else
+    {
+      $(this).parent().find('.dt_select').hide();
+    }
+  }
+
+  /// End functions
+  
+$(function() {  
+ // $('#new_family').bind('submit',doBeforeSubmit);
+  // Initial First person div settings 
+  $('#firstinfodiv > .removediv').hide();
+  var firstgensel = $('#firstinfodiv > .gender_sel');
+  if (firstgensel.val() == 'm'){firstgensel.parent().find('.iffemale_div').hide();}
+  firstgensel.bind('change',genderchange);
+  //
+  var first_preg_select = $('#firstinfodiv .preg_select');
+  if (first_preg_select.val() == 0){first_preg_select.parent().find('.dt_select').hide(); }
+  first_preg_select.bind('change',pregchange);
+  // End first div setting
+
+
+});
+</script> 
+
+<script>
+  $("#btn_add").click(function() { 
+    
+     var $repeatDiv = jQuery(".per_ex:last");
+     var id = "repeatDiv" + new Date().getTime();
+     var x = $repeatDiv.clone().attr("id",id );
+     
+      x.find('input').each(function() {
+      var input = $(this);
+      name = input.attr('name');
+      nid = input.attr('id');
+      a = name.replace(/(persons\[)(\d+)(\])/, function(f, p1, p2, p3) {return p1 + (parseInt(p2) + 1) + p3;})
+      b = nid.replace(/(persons_)(\d+)(_)/, function(f, p1, p2, p3) {return p1 + (parseInt(p2) + 1) + p3;})
+      input.attr('name',a)
+      input.attr('id',b)
+      });
+
+      x.find('select').each(function() {
+      var input = $(this);
+      name = input.attr('name');
+      nid = input.attr('id');
+      a = name.replace(/(persons\[)(\d+)(\])/, function(f, p1, p2, p3) {return p1 + (parseInt(p2) + 1) + p3;})
+      b = nid.replace(/(persons_)(\d+)(_)/, function(f, p1, p2, p3) {return p1 + (parseInt(p2) + 1) + p3;})
+      input.attr('name',a)
+      input.attr('id',b)
+
+      });
+      x.find('.removediv').show();
+      x.find('.removediv').bind('click',removeclickeddiv);
+
+      // Bindings
+      var gensel = x.find('.gender_sel');
+      if (gensel.val() == 'm'){gensel.parent().find('.iffemale_div').hide();}
+      gensel.bind('change',genderchange);
+      //
+      var preg_select = x.find('.preg_select');
+    if (preg_select.val() == 0){preg_select.parent().find('.dt_select').hide(); }
+    preg_select.bind('change',pregchange);
+      // end bindings
+
+      $repeatDiv.after(x);
+     
+  });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+    <style>
+    .click_btn:hover{
+        cursor:pointer;
+    }
+    </style>
+       <div class="page-title">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <i class="icon-user page-title-icon"></i>
+                        <h2>Manange Database/</h2>
+                        <p>Add - Edit - Delete - Search entries</p>
+                        <p class="pull-right" style="padding-right:30px">
+                                 <br>Logged in as : <%= current_user.name %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Try Now -->
+        <div class="call-to-action container">
+            <div class="row">
+            <div class="span12">
+                <div class="call-to-action-text">
+                   <div style="padding:10px">
+                        <i class="icon-group icon-large"></i>
+                        <h4>People Registered</h4>
+                    Total Families: <%=@famcount%><br>
+                    Total People: <%=@peoplecount%><br>
+                   
+                   </div> 
+                </div>
+
+            </div>
+         </div>  
+         </div>
+            <!-- End -->
+
+           <div class="what-we-do container" style="margin-top:0px">
+            <div class="row">
+                <div class="service span3 click_btn" onclick="javascript:window.location.href='/ashaworker'">
+                    <div class="icon-awesome">
+                        <i class="icon-book"></i>
+                    </div>
+                    <h4>New ASHA</h4>
+                    <p>Register a new asha worker</p>
+                    <%= link_to "New Entry",:controller => :ashaworker,:action => :index%>
+                </div>
+                <div class="service span3 click_btn" onclick="javascript:window.location.href='/managedb/new'">
+                    <div class="icon-awesome">
+                        <i class="icon-plus-sign"></i>
+                    </div>
+                    <h4>New Family</h4>
+                    <p>Enter new family</p>
+                    <%= link_to "New Family" , :controller => :managedb ,:action => :new %>
+                </div>
+                <div class="service span3 click_btn" onclick="javascript:window.location.href='/managedb/update'">
+                    <div class="icon-awesome">
+                        <i class="icon-undo"></i>
+                    </div>
+                    <h4>Update Family</h4>
+                    <p>Edit family member</p>
+                    <%= link_to "Edit", :controller => :managedb, :action => :update %>
+                </div>
+                <div class="service span3 click_btn" onclick="javascript:window.location.href='/managedb/delete'">
+                    <div class="icon-awesome">
+                        <i class="icon-trash"></i>
+                    </div>
+                    <h4>Delete Record</h4>
+                    <p>Delete existing record</p>
+                    <%= link_to "Search and view", :controller => :managedb , :action => :delete %>
+                </div>
+            </div>
+        </div>
+
+    <br>
+

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+	 <script src="/includes/jquery.js"></script>
+    <SCRIPT LANGUAGE="JavaScript" SRC="/bootstrap/js/bootstrap.js"></SCRIPT>
+    <style>
+    	.form-horizontal .control-group{
+    		margin-bottom:5px;
+    	}
+
+    	#results-div{
+    		height:800px;
+    		background:#9c9;
+    		overflow: auto;
+    	}
+    </style>
+
+    
+    <%if @multicast && @multicast.sms_voice == "voice"%>
+		    <script type="text/javascript">
+			$(document).ready(function() {
+			
+			$('#refreshform').submit(function () {
+				 $('#resultsdiv').html("Loading ... ");
+			    $.post('/multicast/get_progress_multi', $('#refreshform').serialize(), function (data, textStatus) {
+			         $('#resultsdiv').html(data);
+			    });
+			    return false;
+			});
+			});
+			</script>
+			<script>
+				window.onload=function(){ 
+					 $('#resultsdiv').html("Loading ... ");
+			    $.post('/multicast/get_progress_multi', $('#refreshform').serialize(), function (data, textStatus) {
+			         $('#resultsdiv').html(data);
+			    });
+		    		setInterval(function() {
+		     			 $('#resultsdiv').html("Loading ... ");
+						    $.post('/multicast/get_progress_multi', $('#refreshform').serialize(), function (data, textStatus) {
+						         $('#resultsdiv').html(data);
+						    });
+					}, 10000);
+				};
+			</script>
+	<%end%>
+
+
+
+</head>
+<body>
+
+<%if @multicast%>
+		<div class="container">
+		<div class="row">
+			<div class="span3">
+				<legend>Last Multicast Details</legend>
+				<b><%=@multicast.sms_voice.capitalize%> Multicast </b>
+				<br>Send to  <%=pluralize(@multicast.people_ids.count, 'person')%>  
+
+				<br><br><b>Scheduled For :</b><br>
+				<% if @multicast.when =="lat"%>
+				<%=@multicast.datetime%>
+				<%else%>
+				Immediate 
+				<%end%>
+
+				<%if @multicast.sms_voice =="sms"%>
+					<div>
+					<br><b>SMS TEXT </b><br>
+					<%= @multicast.message%>
+					<br>
+					</div>
+
+				<%else%>
+					<div style="overflow:hidden">
+					<br><b>Audio File Name :</b><br>
+					<%= @multicast.audio_file_name.to_s%>
+					<br>
+					</div>
+				<%end%>
+				
+			</div>
+
+			<div class="span9">
+				<legend>Live Status (Only for Voice Multicast)</legend>
+				<%if @multicast.sms_voice == "voice"%>
+					<form method="post" id ="refreshform" class="inline-form">
+						<%=hidden_field_tag 'multiid',@multicast.id%>
+						<em>Auto Refreshes every 10 seconds.</em>	<input type="submit" class="btn btn-success" value ="Manaul Refresh">
+					</form>
+				<%end%>
+				<div id="resultsdiv">
+					
+				</div>
+			</div>
+
+
+		</div>
+		</div>
+
+
+<%else%>
+		<div class="container">
+		<div class="row">
+			<div class="span12">
+				No Multicasts Found
+			</div>
+
+			
+		</div>
+		</div>
+
+
+<%end%>
+
+</body>
+
+
+</html>

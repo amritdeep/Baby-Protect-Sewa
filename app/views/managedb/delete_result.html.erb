@@ -1,0 +1,45 @@
+  <div class="page-title">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <i class="icon-user page-title-icon"></i>
+                        <h2>Delete Family/</h2>
+                        <p>Delete a family record</p>
+                        <p class="pull-right" style="padding-right:30px">
+                                 <br>Logged in as : <%= current_user.name %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div class="what-we-do container">
+        <div class="row">
+            <div class="span12">
+                <div class="service" align="left" style="padding-left:10px">
+                    <br>
+                    <div class="alert alert-success alert-block">
+
+                    	
+						<%=@mess%>
+
+                    </div>
+                    
+                    <br>
+                      <input type="button" value="Manage DB"  onclick="javascript:window.location.href='/managedb'" class="btn btn-inverse">
+                      <input type="button" value="Dashboard" id ="discard_btn" onclick="javascript:window.location.href='/'" class="btn btn-inverse">
+                </div>
+             
+                
+              </div>  
+          </div>  <!-- END row -->   
+                    
+</div>
+
+
+
+
+
+
+<br><br>
+

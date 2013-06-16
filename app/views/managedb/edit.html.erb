@@ -1,0 +1,103 @@
+ <style type="text/css">
+          .per_ex{
+            border-bottom: 1px solid #9d426b;
+          }
+        </style>
+        <div class="page-title">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <i class="icon-user page-title-icon"></i>
+                        <h2>Edit Family/</h2>
+                        <p>Edit Family member details</p>
+                        <p class="pull-right" style="padding-right:30px">
+                                 <br>Logged in as : <%= current_user.name %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+ <form accept-charset="UTF-8" action="/managedb/edit" class="new_family" id="new_family" method="post">
+                     
+        <div class="what-we-do container">
+            <div class="row">
+              <div class="span12">
+                <div class="service" align="left" style="padding:10px">
+                        <div class="alert alert-danger hide" id="fam_error">sd</div> <!-- Message -->
+                          <%= hidden_field_tag :famobjid, @famobjid%>
+                         <%= fields_for "family", @family do |f| %>
+                        <b><big>Family ID </big></b><br><big><i class="label label-inverse" style="height:15px"><%=@family.famid%></i></big><br>
+                        <%= f.hidden_field :famid %><br>
+                        <b><big>Village </big></b><%= f.text_field :village ,:placeholder=>"Village name"%>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <b><big>Card Number </big></b><%= f.text_field :cardNum ,:placeholder=>"Ration or BPL card number"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <b><big>ASHA Worker ID </big></b><%= f.select(:ashaID, @asha_wokers) %>
+                        <%end%>
+                </div>
+              </div>            
+            </div>
+        </div>
+
+      <div class="what-we-do container">
+            <div class="row">
+              <div class="span12">
+                <div class="service" align="left" style="padding:10px">
+                      
+                      <div class ="per_holder">
+
+                        <%@persons.each_with_index do |per,i| %> 
+                      	<%if i==0%>
+                        	<div class ="per_ex" id="firstinfodiv">
+                        <%else%>
+                        	<div class ="per_ex">
+                        <%end%>
+                            <%= fields_for "persons[#{i}]", per do |f| %>
+                            <br>                                                        
+                            <div class="alert alert-danger hide per_error_box">sd</div> 
+
+                            <%=f.select :adult , [["Adult",1],["Child",0]] ,{ }, { :class => 'adult_child' }%> 
+                            <%=f.text_field :fname ,:placeholder=>"First Name",:class=>'fname'%>
+                            <%=f.text_field :mname ,:placeholder=>"Middle Name"%>
+                            <%=f.text_field :lname ,:placeholder=>"Last Name",:class=>'lname'%>&nbsp;&nbsp;+91 <%=f.text_field :mobnum ,:placeholder=>"Mobile Number",:class=>'mobilenum'%>
+                            <br><big><b>Date Of Birth: </b></big><%=f.date_select :dob ,{ :order => [:day,:month ,:year] }%>&nbsp;&nbsp;<%=f.text_field :occupation ,:placeholder=>"Occupation"%><br>
+                            <big><b>Health insurance Num: </b></big><%=f.text_field :health_insurance_num ,:placeholder=>"Health insurance Num"%> &nbsp;&nbsp;
+                            <big><b>Gender: </b></big><%=f.select :gender , [["Male","m"],["Female","f"]] ,{ }, { :class => 'gender_sel' }%>&nbsp;&nbsp;
+              
+                            <div class="iffemale_div">
+                              <b><big>Pregnancy Status: </big></b><%=f.select :pregnant_status , [["Not Pregnant",0],["Pregnant",1]] ,{ }, { :class => 'preg_select' } %>
+                              <div class="dt_select"> <b><big>Delivery Date: </b></big><%=f.date_select :delivery_date ,{ :order => [:day,:month ,:year] } %>  &nbsp;&nbsp;&nbsp; <b><big>Reminder: </big></b><%=f.select :reminder_enabled , [["Disabled",0],["Enabled",1]],{},{:class=>"rem_select"} %>
+                              </div>
+                            </div><!-- iffemale -->
+                            <br><div class="removediv btn btn-danger" style="width:150px"><i class="icon-minus"></i> Remove member</div><br>
+                          <% end %>    
+                             <br>              
+                       </div> <!-- /per ex -->
+                      <%end%> <!-- End of Each -->
+
+                  	<br>
+                       
+                        <div id="btn_add" class="btn btn-info" href="#" style="width:150px"><i class="icon-plus"></i> New Member</div>
+                        <div align="right" style="padding-right:10px">
+                          <%= submit_tag "Save Changes" ,:class=>"btn btn-success"%>&nbsp;&nbsp;
+                          <div class="btn btn-warning" onclick="javascript:window.location.href ='/managedb';" >Discard Changes</div>
+                        </div>
+
+                  
+                  
+                  
+                   </div>  <!-- /per holder -->
+                  
+                  </div> <!-- service -->
+                </div><!-- /span12 -->
+              </div><!-- /row -->
+            </div> <!-- /conatiner -->
+ </form>
+
+            <br>
+            <div class="btn btn-inverse" onclick="javascript:window.location.href ='/managedb';">Go Back</div><br><br>
+        <script src="/assets/js/jquery-1.8.2.min.js"></script>
+        <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+        
+        <script src="/assets/js/dyna_edit_family.js"></script>
+        <script src="/assets/js/val_family.js"></script>

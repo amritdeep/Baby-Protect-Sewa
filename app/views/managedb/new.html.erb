@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ 
+  
+  <meta charset="utf-8">
+        <title>Baby Protect seva+ | Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster">
+        <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+      
+        <link rel="stylesheet" href="/assets/css/font-awesome.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="/assets/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
+
+       
+</head>
+
+<body>
+<div class="container">
+            <div class="header row">
+                <div class="span12">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                            <h1>
+                                <a class="brand" href="/">Baby Protect</a>
+                            </h1>
+                            <div class="nav-collapse collapse">
+                                <ul class="nav pull-right">
+                                    <li>
+                                        <a href="/"><i class="icon-dashboard icon-large"></i><br />Dashboard<br>&nbsp;</a>
+                                    </li>
+                                    <li class="current-page">
+                                        <a href="/managedb"><i class="icon-tasks icon-large"></i><br />Manage<br> Database</a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="/multicast"><i class="icon-group   icon-large"></i><br />Multicast<br>&nbsp;</a>
+                                    </li>
+                                    <li>
+                                        <a href="/unicast"><i class="icon-star  icon-large"></i><br />Unicast<br>&nbsp;</a>
+                                    </li>
+                                     
+                                    
+                          
+                                    <li>
+                                        <a href="/users/edit"><i class="icon-user  icon-large"></i><br />Profile<br>&nbsp;</a>
+                                    </li>
+                                    <li>
+                                        <a href="/users/sign_out"><i class="icon-pencil  icon-large"></i><br />LOGOUT<br>&nbsp;</a>
+                                   </li>
+                                  
+                                </ul>
+                                
+                               
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style type="text/css">
+          .per_ex{
+            border-bottom: 1px solid #9d426b;
+          }
+        </style>
+        <div class="page-title">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <i class="icon-user page-title-icon"></i>
+                        <h2>New Family/</h2>
+                        <p>Add Family member details</p>
+                        <p class="pull-right" style="padding-right:30px">
+                                 <br>Logged in as : <%= current_user.name %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4 align="left" style="padding-left:60px">New Family Form</h4>
+         <form accept-charset="UTF-8" action="/managedb/create" class="new_family" id="new_family" method="post">
+                     
+        <div class="what-we-do container">
+            <div class="row">
+              <div class="span12">
+                <div class="service" align="left" style="padding:10px">
+                        <div class="alert alert-danger hide" id="fam_error">sd</div> <!-- Message -->
+                        
+                         <%= fields_for "family", @family do |f| %>
+                        <b><big>Family ID </big></b><br><big><i class="label label-inverse" style="height:15px"><%=@family.famid%></i></big><br>
+                        <%= f.hidden_field :famid %><br>
+                        <b><big>Village </big></b><%= f.text_field :village ,:placeholder=>"Village name"%>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <b><big>Card Number </big></b><%= f.text_field :cardNum ,:placeholder=>"Ration or BPL card number"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <b><big>ASHA Worker ID </big></b><%= f.select(:ashaID, @asha_wokers) %>
+                        <%end%>
+                </div>
+              </div>            
+            </div>
+        </div>
+
+        <div class="what-we-do container">
+            <div class="row">
+              <div class="span12">
+                <div class="service" align="left" style="padding:10px">
+                    <%per = Person.new%>    
+                      <div class ="per_holder">
+                        <div class ="per_ex" id="firstinfodiv">
+
+                            <%= fields_for "persons[0]", per do |f| %>
+                            <br>                                                        
+                            <div class="alert alert-danger hide per_error_box">sd</div> 
+
+                            <%=f.select :adult , [["Adult",1],["Child",0]] ,{ }, { :class => 'adult_child' }%> 
+                            <%=f.text_field :fname ,:placeholder=>"First Name",:class=>'fname'%>
+                            <%=f.text_field :mname ,:placeholder=>"Middle Name"%>
+                            <%=f.text_field :lname ,:placeholder=>"Last Name",:class=>'lname'%>&nbsp;&nbsp;+91 <%=f.text_field :mobnum ,:placeholder=>"Mobile Number",:class=>'mobilenum'%>
+                            <br><big><b>Date Of Birth: </b></big><%=f.date_select :dob ,{ :order => [:day,:month ,:year] }%>&nbsp;&nbsp;<%=f.text_field :occupation ,:placeholder=>"Occupation"%><br>
+                            <big><b>Health insurance Num: </b></big><%=f.text_field :health_insurance_num ,:placeholder=>"Health insurance Num"%> &nbsp;&nbsp;
+                            <big><b>Gender: </b></big><%=f.select :gender , [["Male","m"],["Female","f"]] ,{ }, { :class => 'gender_sel' }%>&nbsp;&nbsp;
+              
+                            <div class="iffemale_div">
+                              <b><big>Pregnancy Status: </big></b><%=f.select :pregnant_status , [["Not Pregnant",0],["Pregnant",1]] ,{ }, { :class => 'preg_select' } %>
+                              <div class="dt_select"> <b><big>Delivery Date: </b></big><%=f.date_select :delivery_date ,{ :order => [:day,:month ,:year] } %>  &nbsp;&nbsp;&nbsp; <b><big>Reminder: </big></b><%=f.select :reminder_enabled , [["Disabled",0],["Enabled",1]],{},{:class=>"rem_select"} %>
+                              </div>
+                            </div><!-- iffemale -->
+                            <div class="removediv btn btn-danger" style="width:50px">Remove</div><br>
+                          <% end %>    
+                                       
+                       </div> <!-- /per ex -->
+                      
+                      <br>
+                       
+                        <div id="btn_add" class="btn btn-info" href="#" style="width:150px"><i class="icon-plus"></i> New Member</div>
+                        <div align="right" style="padding-right:10px">
+                          <%= submit_tag "Save Family" ,:class=>"btn btn-success"%>&nbsp;&nbsp;
+                          <div class="btn btn-warning" onclick="javascript:window.location.href ='/managedb';" >Discard Changes</div>
+                        </div>
+
+                  
+                  
+                  
+                   </div>  <!-- /per holder -->
+                  
+                  </div> <!-- service -->
+                </div><!-- /span12 -->
+              </div><!-- /row -->
+            </div> <!-- /conatiner -->
+ </form>
+
+            <br>
+            <div class="btn btn-inverse" onclick="javascript:window.location.href ='/managedb';">Go Back</div><br><br>
+
+
+
+<!-- Change to #btn_add below to enable dynamism -->
+
+ <!-- Header -->
+  <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="copyright span4">
+                        <p>&copy; Copyright 2013 Baby Protect</a>.</p>
+                    </div>
+                    <div class="social span8">
+                        <a class="facebook" href=""></a>
+                       
+                        <a class="twitter" href=""></a>
+                       
+                    </div>
+                </div>
+            </div>
+        </footer>
+  <!-- Javascript -->
+        <script src="/assets/js/jquery-1.8.2.min.js"></script>
+        <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+        
+        <script src="/assets/js/dyna_family.js"></script>
+        <script src="/assets/js/val_family.js"></script>
+</body>
+
+</html>

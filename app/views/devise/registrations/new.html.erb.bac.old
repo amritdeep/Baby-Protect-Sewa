@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<title><%=@title%></title>
+		<link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic|Cuprum:400,700,400italic" rel="stylesheet" type="text/css">
+		<style>
+		.box_center {margin:auto;width:300px;}
+		</style>
+
+</head>
+
+
+<body>
+<div class="box_center">
+
+<h1>  Registration </h1>
+
+<fieldset style="width:250px">
+<legend>Sign up</legend>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+
+  <div><%= f.label "Your Name" %><br />
+  <%= f.text_field :name, :autofocus => true %></div>
+
+  <div><%= f.label :username %><br />
+  <%= f.text_field :username%></div>
+
+  <div><%= f.label "Create a Password" %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label "Confirm your Password"%><br />
+  <%= f.password_field :password_confirmation %></div>
+ 
+ 	
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email%></div>
+  
+  <div><%= f.label :gender %><br />
+  <%= f.select(:gender, [['Male', "m"], ['Female', "f"]]) %></div>
+   
+   <div><%= f.label :area %><br />
+  <%= f.text_field :area%></div>
+
+  <div><%= f.label :state %><br />
+  <%= f.select(:state, indian_states )%></div>
+
+  <%ngos = Ngo.all.to_a
+  ngo_ops =  Array.new
+  %>
+  <%ngos.each do |x|%>
+  <%ngo_ops << [x.name,x.name] %>
+  <%end%>
+
+  <div><label>Select Your NGO</label><br />
+  <%= f.select(:ngo, ngo_ops) %></div>
+ 
+  
+  <div><%= f.label "Mobile Number " %><br />
+  <%= f.text_field :mobnum %></div>
+  
+ 
+  <div><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>
+
+</fieldset>
+</body>
+</html>

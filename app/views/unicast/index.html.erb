@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <title>Baby Protect seva+ | Unicast settings</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/prettyPhoto/css/prettyPhoto.css">
+        <link rel="stylesheet" href="assets/css/flexslider.css">
+        <link rel="stylesheet" href="assets/css/font-awesome.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="assets/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+    </head>
+
+    <body>
+
+        <!-- Header -->
+        <div class="container">
+            <div class="header row">
+                <div class="span12">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                            <h1>
+                                <a class="brand" href="/">Baby Protect</a>
+                            </h1>
+                            <div class="nav-collapse collapse">
+                                <ul class="nav pull-right">
+                                    <li>
+                                        <a href="/"><i class="icon-dashboard icon-large"></i><br />Dashboard<br>&nbsp;</a>
+                                    </li>
+                                    <li>
+                                        <a href="/managedb"><i class="icon-tasks icon-large"></i><br />Manage<br> Database</a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="/multicast"><i class="icon-group	  icon-large"></i><br />Multicast<br>&nbsp;</a>
+                                    </li>
+                                    <li class="current-page">
+                                        <a href="/unicast"><i class="icon-star  icon-large"></i><br />Unicast<br>&nbsp;</a>
+                                    </li>
+                                     
+                                    
+                          
+                                    <li>
+                                        <a href="/users/edit"><i class="icon-user  icon-large"></i><br />Profile<br>&nbsp;</a>
+                                    </li>
+                                    <li>
+                                        <a href="/users/sign_out"><i class="icon-pencil  icon-large"></i><br />LOGOUT<br>&nbsp;</a>
+                                   </li>
+                              		
+                                </ul>
+                                
+                               
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       <div class="page-title">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <i class="icon-user page-title-icon"></i>
+                        <h2>Unicast Settings/</h2>
+                        <p>Change unicast reminder settings</p>
+                        <p class="pull-right" style="padding-right:30px">
+                                 <br>Logged in as : <%= current_user.name %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="what-we-do container">
+            <div class="row">
+               
+                <div class="service span6" align="left">
+                <div style="padding:20px">
+                        <h3 style="color:#9d426b">Unicast Settings</h3>
+                        <%if @message%>
+                            <div class="alert alert-success">
+                                 <%=@message%>
+                            </div>
+                        <%end%>
+
+                         <big><b>Unicast reminders</b></big><br>
+                        <%= form_for( current_user,:as=>"unicast" ,:url =>"/unicast", :method=>:post ) do |f| %>
+                         <%= f.radio_button :uni_act_inactive, '1'%> <span style="font-size:15px;">ON</span>
+                          <%= f.radio_button :uni_act_inactive, '0' %> <span style="font-size:15px;">OFF</span>
+                          <br><br>
+                        <big><b>Unicast Option</b></big><br>
+
+                        
+                          <%= f.radio_button :uni_sms_voice, 'voice'%> <span style="font-size:15px;">Voice</span>
+                          <%= f.radio_button :uni_sms_voice, 'sms' %> <span style="font-size:15px;">SMS</span>
+                            <br><br>
+                            <big><b>Days before to send voice/sms</b></big><br>
+                          <%= f.select(:uni_days_before_rem, [1,2,3,4,5,6,7]) %> <br><br>
+                          <big><b>What time do you want to send voice/sms reminder</b></big><br>
+                          <%= f.time_select(:uni_time_of_day, :include_seconds => false) %><br><br>
+                          <%= f.submit("Save",:class=>"btn btn-success") %>
+                        <%end%>
+
+                    </div>    
+                   </div>   
+                   <div class="service span6" align="left">
+                       <div style="padding:20px"> 
+                        <h3 style="color:#9d426b">Defaulters List</h3>
+                       <h5>List of women who have not yet taken vaccination</h5>
+
+                         
+
+                    </div>    
+                   </div> 
+                        
+            </div>
+        </div>
+        <br><br>
+
+                <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="copyright span4">
+                        <p>&copy; Copyright 2013 Baby Protect</a>.</p>
+                    </div>
+                    <div class="social span8">
+                        <a class="facebook" href=""></a>
+                       
+                        <a class="twitter" href=""></a>
+                       
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.8.2.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.flexslider.js"></script>
+        <script src="assets/js/jquery.tweet.js"></script>
+        <script src="assets/js/jflickrfeed.js"></script>
+        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+        <script src="assets/js/jquery.ui.map.min.js"></script>
+        <script src="assets/js/jquery.quicksand.js"></script>
+        <script src="assets/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+        <script src="assets/js/scripts.js"></script>
+
+    </body>
+
+</html>

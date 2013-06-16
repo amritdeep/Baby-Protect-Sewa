@@ -1,0 +1,91 @@
+<html>
+<head>
+	<script src="/includes/jquery.js"></script>
+	
+</head>
+
+
+<%= form_for(@family, :as => "family", :url => "/managedb/edit") do |f| %>
+  <%= hidden_field_tag :famobjid, @famobjid%>
+  <div>Family ID :  <%=@family.famid%><br />
+  <%= f.hidden_field :famid %></div>
+
+  <br>
+  <div><%= f.label :village %><br />
+  <%= f.text_field :village %></div>
+
+  <div><%= f.label :cardNum %><br />
+  <%= f.text_field :cardNum %></div>
+
+  <div><%= f.label :AshaWorker %><br />
+  <%= f.select(:ashaID, @asha_wokers) %></div>
+
+  <hr>
+   
+  <%@persons.each_with_index do |per,i|%> 
+   
+  <div class ="per_holder">
+	  
+	  <div class ="per_ex">
+	  <%= fields_for "persons[#{i}]", per do |f| %>
+	    <%=f.select :adult , [["Adult",1],["Child",0]] %>  
+	   	<%=f.text_field :fname ,:placeholder=>"First Name"%>
+	   	<%=f.text_field :mname ,:placeholder=>"Middle Name"%>
+	   	<%=f.text_field :lname ,:placeholder=>"Last Name"%>
+	   	&nbsp; DOB:<%=f.date_select :dob%>  
+	   	
+	   	<br>Gender: <%=f.select :gender , [["Male","m"],["Female","f"]] %>
+	   	<%=f.text_field :mobnum ,:placeholder=>"Mobile Number"%>&nbsp;&nbsp;&nbsp;	
+	   	Occupation:<%=f.text_field :occupation ,:placeholder=>"Occupation"%>
+	   	Health insurance Num: <%=f.text_field :health_insurance_num ,:placeholder=>"Health insurance Num"%>
+	   	<br>Delivery Date:<%=f.date_select :delivery_date%>  &nbsp;&nbsp;&nbsp;
+	   	Pregnant Status: <%=f.select :pregnant_status , [["Not Pregnant",0],["Pregnant",1]] %>
+	   	<br>Reminder : <%=f.select :reminder_enabled , [["Disabled",0],["Enabled",1]],{},{:class=>"rem_select"} %>
+	  <% end %> 
+	  <hr>
+	  </div>
+
+	 <%end%>
+
+
+
+  </div>
+
+  <a id="btn_add" href="#">ADD</a>
+
+  <div><%= f.submit "Update" %></div>
+    <div><input type="button" value="Disacrd Changes" id ="discard_btn" onclick="javascript:window.location.href='/managedb'"></div>
+<% end %>
+
+
+
+<!-- Change to #btn_add below to enable dynamism -->
+<script>
+	$("#btn_add").click(function() { 
+		
+	   var $repeatDiv = jQuery(".per_ex:last");
+	   var id = "repeatDiv" + new Date().getTime();
+	   var x = $repeatDiv.clone().attr("id",id );
+	   
+		x.find('input').each(function() {
+			var input = $(this);
+			name = input.attr('name');
+			a = name.replace(/(persons\[)(\d+)(\])/, function(f, p1, p2, p3) {return p1 + (parseInt(p2) + 1) + p3;})
+			input.attr('name',a)
+			
+    	});
+
+    	x.find('select').each(function() {
+			var input = $(this);
+			name = input.attr('name');
+			a = name.replace(/(persons\[)(\d+)(\])/, function(f, p1, p2, p3) {return p1 + (parseInt(p2) + 1) + p3;})
+			input.attr('name',a)
+    	});
+
+	   	$repeatDiv.after(x);
+	   
+	});
+</script>
+
+
+</html>
